@@ -24,18 +24,14 @@
       </div>
       <p>This is a simple page setup, using only vanilla HTML/CSS/JS, to work out as much as possible about YOU.</p>
       <p>Don't worry though! I value privacy, and I also cannot be asked to set up a server for this little experiment, so none of your data is actually stored.</p><br/>
-      <button onclick="startRecon()" class="clear-button scan-button">begin data scan</button>
+      <button onclick="startRecon()" class="clear-button scan-button" id="start">begin data scan</button>
       <p>output (JSON object):</p>
       <p id="output" aria-live="polite"></p>
     </section>
-
-    <div id="sign-in-button-wrapper" class="hidden-state">
-      <button id="sign-in-button" class="clear-button user-status-button" type="button" onclick="startRecon()">begin data scan</button>
-    </div>
   </div>
 
   <noscript>We need JavaScript turned on to make this work.</noscript>
-  <script src="js/script.js"></script>
+  <script src="js/script.js" type="module"></script>
   <footer style="z-index: 2; color:goldenrod">Made with &lt;3 by babafun in 2026</footer>
 </body>
 </html>
