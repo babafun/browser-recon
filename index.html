@@ -4,15 +4,37 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="style.css" rel="stylesheet" type="text/css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
   <title>Browser Recon</title>
 </head>
-<body>
-  <h1>Browser Recon!</h1>
-  <p>This is a simple page setup, using only vanilla HTML/CSS/JS, to work out as much as possible about YOU.</p><br/>
-  <p>Don't worry though! I value privacy, and I also cannot be asked to set up a server for this little experiment, so none of your data is actually stored.</p><br/>
-  <button onclick="startRecon()">begin data scan</button>
-  <p>output:</p><br/>
-  <div id="output"></div>
-  <script src="js/script.js" type="text/javascript"></script>
+<body style="color: white;">
+  <div id="app" class="recon-shell">
+    <div id="app-background">
+      <div id="app-background-image" class="background-image"></div>
+    </div>
+
+    <section id="app-info" class="glass-panel" style="bottom: auto; left: 50%; margin: 0; max-width: 720px; opacity: 1; padding: 40px; position: absolute; top: 50%; transform: translate(-50%, -50%); width: calc(100% - 80px); z-index: 2; background: rgba(30, 30, 30, 0.48); border: 1px solid rgba(255, 255, 255, 0.24); border-radius: 20px; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);">
+      <div class="info">
+        <h1 class="time recon-title" style="position: fixed; top: -120px; left: 0; width: 100%; color: white; font-size: clamp(2.5rem, 8vw, 6em); text-align: center;">Browser Recon</h1>
+      </div>
+      <div class="reminder">
+        <span class="reminder-icon">Local User-Agent Analysis</span>
+      </div>
+      <p>This is a simple page setup, using only vanilla HTML/CSS/JS, to work out as much as possible about YOU.</p>
+      <p>Don't worry though! I value privacy, and I also cannot be asked to set up a server for this little experiment, so none of your data is actually stored.</p><br/>
+      <button onclick="startRecon()" class="clear-button scan-button" style="color:aliceblue; background-color: rgba(150, 35, 45, 0.42); border-color: rgba(255, 170, 170, 0.42); box-shadow: 0 8px 24px rgba(80, 10, 15, 0.28); padding: 12px; font-family: 'JetBrains Mono'">begin data scan</button>
+      <p>output:</p>
+      <p id="output" aria-live="polite"></p>
+    </section>
+
+    <div id="sign-in-button-wrapper" class="hidden-state" style="display: none;">
+      <button id="sign-in-button" class="clear-button user-status-button" type="button" onclick="startRecon()">begin data scan</button>
+    </div>
+  </div>
+
+  <noscript>We need JavaScript turned on to make this work.</noscript>
+  <script src="js/script.js"></script>
 </body>
 </html>
