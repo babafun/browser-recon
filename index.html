@@ -9,32 +9,33 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
   <title>Browser Recon</title>
 </head>
-<body style="color: white;">
+<body>
   <div id="app" class="recon-shell">
-    <div id="app-background">
+    <div id="app-background" style="z-index: 0;">
       <div id="app-background-image" class="background-image"></div>
     </div>
-
-    <section id="app-info" class="glass-panel" style="bottom: auto; left: 50%; margin: 0; max-width: 720px; opacity: 1; padding: 40px; position: absolute; top: 50%; transform: translate(-50%, -50%); width: calc(100% - 80px); z-index: 2; background: rgba(30, 30, 30, 0.48); border: 1px solid rgba(255, 255, 255, 0.24); border-radius: 20px; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);">
       <div class="info">
-        <h1 class="time recon-title" style="position: fixed; top: -120px; left: 0; width: 100%; color: white; font-size: clamp(2.5rem, 8vw, 6em); text-align: center;">Browser Recon</h1>
+        <h1 class="recon-title" style="position: absolute; padding-top: 0; margin-top: 0; top: 0; left: 0; width: 100%; color: white; font-size: clamp(2.5rem, 8vw, 6em);">Browser Recon</h1>
       </div>
+      <br/>
+    <section id="app-info" class="glass-panel">
       <div class="reminder">
         <span class="reminder-icon">Local User-Agent Analysis</span>
       </div>
       <p>This is a simple page setup, using only vanilla HTML/CSS/JS, to work out as much as possible about YOU.</p>
       <p>Don't worry though! I value privacy, and I also cannot be asked to set up a server for this little experiment, so none of your data is actually stored.</p><br/>
-      <button onclick="startRecon()" class="clear-button scan-button" style="color:aliceblue; background-color: rgba(150, 35, 45, 0.42); border-color: rgba(255, 170, 170, 0.42); box-shadow: 0 8px 24px rgba(80, 10, 15, 0.28); padding: 12px; font-family: 'JetBrains Mono'">begin data scan</button>
-      <p>output:</p>
+      <button onclick="startRecon()" class="clear-button scan-button">begin data scan</button>
+      <p>output (JSON object):</p>
       <p id="output" aria-live="polite"></p>
     </section>
 
-    <div id="sign-in-button-wrapper" class="hidden-state" style="display: none;">
+    <div id="sign-in-button-wrapper" class="hidden-state">
       <button id="sign-in-button" class="clear-button user-status-button" type="button" onclick="startRecon()">begin data scan</button>
     </div>
   </div>
 
   <noscript>We need JavaScript turned on to make this work.</noscript>
   <script src="js/script.js"></script>
+  <footer style="z-index: 2; color:goldenrod">Made with &lt;3 by babafun in 2026</footer>
 </body>
 </html>

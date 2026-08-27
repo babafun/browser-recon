@@ -19,5 +19,5 @@ const report = {
 function startRecon(){
     console.log("collected at:", new Date().toISOString());
     console.log(report);
-    out.innerText = typeof report + (JSON.stringify(report, null, 2));
+    out.innerText = (JSON.stringify(report, null, 2));
 }
