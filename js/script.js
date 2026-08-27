@@ -1,4 +1,5 @@
 import {getIP} from "./ip.js";
+import {highlightObject} from "./json.js";
 const $ = (s, e = document) => e.querySelector(s);
 const out = $("#output");
 const report = {
@@ -28,7 +29,7 @@ async function startRecon(){
     report.user.IPv4 = await fetchIP();
     console.log("collected at:", new Date().toISOString());
     console.log(report);
-    out.innerText = (JSON.stringify(report, null, 2));
+    out.innerHTML = highlightObject(JSON.stringify(report, null, 2));
 }
 
 document.onload = async () => {await fetchIP();}

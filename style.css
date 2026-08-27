@@ -65,7 +65,7 @@ body::-webkit-scrollbar {
 
 #app-info {
   align-items: stretch;
-  background: rgba(30, 30, 30, 0.48);
+  background: rgba(30, 30, 30, 0.7);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.24);
@@ -171,4 +171,29 @@ footer {
   .reminder span {
     font-size: 1em;
   }
+}
+
+#output {
+  font-family: "JetBrains Mono", monospace;
+  white-space: pre-wrap;
+}
+
+.json-key {
+  color: #9cdcfe;
+}
+
+.json-string {
+  color: #cb78ce;
+}
+
+.json-number {
+  color: #b5cea8;
+}
+
+.json-boolean {
+  color: #569cd6;
+}
+
+.json-null {
+  color: #569cd6;
 }
