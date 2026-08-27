@@ -65,7 +65,7 @@ body::-webkit-scrollbar {
 
 #app-info {
   align-items: stretch;
-  background: rgba(30, 30, 30, 0.7);
+  background: rgba(30, 30, 30, 0.8);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.24);
@@ -196,4 +196,8 @@ footer {
 
 .json-null {
   color: #569cd6;
+}
+
+.json-error {
+  color: #d65656;
 }

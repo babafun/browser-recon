@@ -1,8 +1,19 @@
 import { getIP } from "./ip.js";
 import { highlightObject } from "./json.js";
 import { getGraphicsInfo } from "./graphics.js";
+import { analyseReport } from "./intelligence.js";
+
+
 const $ = (s, e = document) => e.querySelector(s);
+
 const out = $("#output");
+
+
+async function fetchIP() {
+    return (await getIP()).ip;
+}
+
+
 async function collectReport() {
     const report = {
         browser: {
@@ -27,43 +38,66 @@ async function collectReport() {
 
         device: {
             IPv4: "not fetched",
-            logicalCPUCoreCount: navigator.hardwareConcurrency,
-            RAM: navigator.deviceMemory,
-            maxTouchPoints: navigator.maxTouchPoints,
 
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            locale: Intl.DateTimeFormat().resolvedOptions().locale,
+            logicalCPUCoreCount:
+                navigator.hardwareConcurrency,
 
-            graphics: {
-                webgl: {
-                }
-            }
-        },
-        intelligence: {
-            possiblyChanged: [], // reports on anything that could be slightly less confident
-            inferred: {}, // inference
-            lessConfident: {} // a copy of the entire report object but containing only the things that were removed due to extremely low confidence/clear impossibility in data (e.g. delete screen.availWidth and move it to intelligence.lessConfident.screen.availWidth)
+            RAM:
+                navigator.deviceMemory,
+
+            maxTouchPoints:
+                navigator.maxTouchPoints,
+
+            timezone:
+                Intl.DateTimeFormat()
+                    .resolvedOptions()
+                    .timeZone,
+
+            locale:
+                Intl.DateTimeFormat()
+                    .resolvedOptions()
+                    .locale,
+
+            graphics: getGraphicsInfo()
         }
     };
 
     report.device.IPv4 = await fetchIP();
-    report.device.graphics.webgl = getGraphicsInfo();
+
     return report;
 }
 
-async function fetchIP() {
-    return (await getIP()).ip;
-}
 
 async function startRecon() {
-    const report = await collectReport();
+    try {
+        out.innerText = "Collecting...";
 
-    console.log("collected at:", new Date().toISOString());
-    console.log(report);
+        const report = await collectReport();
 
-    out.innerHTML = highlightObject(
-        JSON.stringify(report, null, 2)
-    );
+        /*
+         * Intelligence receives the raw report and returns
+         * analysis without modifying the original data.
+         */
+
+        report.intelligence = analyseReport(report);
+
+        console.log(
+            "collected at:",
+            new Date().toISOString()
+        );
+
+        console.log(report);
+
+        out.innerHTML = highlightObject(
+            JSON.stringify(report, null, 2)
+        );
+    } catch (error) {
+        console.error(error);
+
+        out.innerText =
+            `Recon failed: ${error.message}`;
+    }
 }
+
 
 $("#start").addEventListener("click", startRecon);
