@@ -6,4 +6,4 @@ Notes:
 - Firefox lies about availWidth/availHeight
 
 Future Ideas:
-- Add IP tracking
+- Add dynamic data gathering (e.g. upon detecting the browser, customise tracking)
